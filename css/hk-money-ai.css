@@ -1199,14 +1199,13 @@ body, .mn-nav__links a {
   flex-shrink: 0;
 }
 
-/* White card */
+/* Photo card — transparent background, photo + bar only */
 .ai-about__card {
-  background: #fff;
-  border-radius: 41px;
-  padding: 28px 24px 32px;
-  box-shadow: 0 0 22.6px rgba(12,64,104,.20);
+  background: transparent;
+  border-radius: 18px;
   width: 270px;
   flex-shrink: 0;
+  overflow: hidden;
 }
 
 /* Second card offset down (stagger) */
@@ -1214,48 +1213,22 @@ body, .mn-nav__links a {
   margin-top: 56px;
 }
 
-/* Photo + salmon bar */
-.ai-about__photo-area {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 18px;
-}
-
+/* Photo */
 .ai-about__photo {
   width: 100%;
-  height: 220px;
+  height: 340px;
   object-fit: cover;
   object-position: center top;
   display: block;
   border-radius: 18px 18px 0 0;
 }
 
+/* Salmon bar */
 .ai-about__bar {
   width: 100%;
   height: 17px;
   background: #e48375;
   border-radius: 0 0 6px 6px;
-  margin-bottom: 18px;
-}
-
-.ai-about__name {
-  font-family: 'Rubik', sans-serif;
-  font-size: 1.875rem;         /* 30px */
-  font-weight: 500;
-  color: #0c4068;
-  letter-spacing: -0.03em;     /* -0.9px / 30px */
-  margin-bottom: 12px;
-  line-height: 1.15;
-}
-
-.ai-about__bio {
-  font-family: 'Rubik', sans-serif;
-  font-size: 1.25rem;          /* 20px */
-  font-weight: 400;
-  color: #0c4068;
-  line-height: 1.3;            /* 26px / 20px */
-  margin: 0;
 }
 
 /* Responsive */
@@ -1534,8 +1507,6 @@ body, .mn-nav__links a {
 
   /* About bottom CTA — center */
   .ai-about__bottom   { align-items: center; text-align: center; }
-  .ai-about__name,
-  .ai-about__bio      { text-align: center; }
 
   /* Contact badges — center */
   .mn-contact__badges { justify-content: center; }
