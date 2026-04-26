@@ -446,15 +446,17 @@ body, .mn-nav__links a {
   margin: 0 0 4px;
 }
 .mn-contact__form .mn-input {
-  background: rgba(255,255,255,.15);
+  background: #fff;
   border: 1px solid rgba(255,255,255,.28);
-  color: #fff;
+  color: #0c4068;
   border-radius: 10px;
+  text-align: right;
+  direction: rtl;
 }
-.mn-contact__form .mn-input::placeholder { color: rgba(255,255,255,.55); }
+.mn-contact__form .mn-input::placeholder { color: rgba(12,64,104,.45); text-align: right; }
 .mn-contact__form .mn-input:focus {
   border-color: rgba(255,255,255,.65);
-  background: rgba(255,255,255,.2);
+  background: #fff;
   outline: none;
 }
 .mn-contact__fine {
@@ -479,6 +481,19 @@ body, .mn-nav__links a {
   border-radius: 18px;
   padding: 32px 28px;
   box-shadow: 0 2px 16px rgba(12,64,104,.06);
+  position: relative;
+  overflow: hidden;
+}
+.ai-how-step::after {
+  content: '';
+  position: absolute;
+  top: -28px;
+  left: -28px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(57,171,226,.18) 0%, rgba(57,171,226,.06) 55%, transparent 75%);
+  pointer-events: none;
 }
 .ai-how-step__num {
   font-family: 'Karantina', sans-serif;
@@ -1453,7 +1468,7 @@ body, .mn-nav__links a {
   .ai-trio__grid      { grid-template-columns: 1fr; }
   .ai-features__grid  { grid-template-columns: repeat(3, 1fr); }
   .ai-how-grid        { grid-template-columns: 1fr; gap: 16px; }
-  .ai-how-arrow       { transform: rotate(90deg); justify-self: center; }
+  .ai-how-arrow       { transform: rotate(-90deg); justify-self: center; }
   .mn-contact__inner  { grid-template-columns: 1fr; gap: 40px; }
   .mn-demo__inner     { grid-template-columns: 1fr; }
   .mn-demo__phone     { order: 2; }
@@ -1510,18 +1525,53 @@ body, .mn-nav__links a {
   /* Contact badges — center */
   .mn-contact__badges { justify-content: center; }
 
-  /* Hero images on mobile — hide, not useful on small screen */
-  .mn-hero__images    { display: none !important; }
-  .mn-hero            { min-height: auto !important; padding-bottom: 40px; }
+  /* ── Mobile hero: stacked layout ── */
+  .mn-hero            { min-height: auto !important; padding-bottom: 0; }
+  .mn-hero__bg-img    { display: block !important; opacity: .22 !important; }
 
-  /* Hide building photo on mobile — too noisy behind text */
-  .mn-hero__bg-img    { display: none !important; }
+  /* Inner: flex column, items fill width */
+  .mn-hero__inner     { padding: 20px 16px 0 !important; align-items: stretch !important; }
 
-  /* Headline: reduce size so it fits in 2 lines on mobile */
-  .mn-hero__headline  { font-size: 2.1rem !important; }
+  /* 1. Headline — very large */
+  .mn-hero__headline  { order: 1; font-size: clamp(4rem, 17vw, 6rem) !important; color: var(--navy) !important; text-align: center !important; margin-bottom: 8px !important; line-height: 0.9 !important; }
 
-  /* Sub-headline: bigger on mobile */
-  .mn-hero__sub       { margin-top: -6px !important; font-size: 1.5rem !important; line-height: 1.5 !important; }
+  /* 2. Sub-headline */
+  .mn-hero__sub       { order: 2; font-size: clamp(2.2rem, 9.5vw, 3rem) !important; line-height: 1.3 !important; color: var(--navy) !important; text-shadow: none !important; text-align: center !important; margin-bottom: 0 !important; }
+  .mn-hero__layer     { color: var(--salmon) !important; }
+
+  /* 3 & 4. Images section: switch from absolute to stacked flow */
+  .mn-hero__images    {
+    order: 3;
+    position: relative !important;
+    min-height: unset !important;
+    height: auto !important;
+    margin-top: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0 !important;
+    width: 100% !important;
+  }
+  .mn-hero__chat-wrap {
+    position: relative !important;
+    left: auto !important; right: auto !important; bottom: auto !important;
+    width: 90% !important;
+    box-shadow: 0 8px 28px rgba(12,64,104,.14) !important;
+    border-radius: 12px 12px 0 0 !important;
+    z-index: 2 !important;
+  }
+  .mn-hero__man-wrap  {
+    position: relative !important;
+    left: auto !important; right: auto !important; bottom: auto !important;
+    width: 72% !important;
+    height: auto !important;
+    margin-top: -20px !important;
+    z-index: 3 !important;
+  }
+  .mn-hero__man-img   { height: auto !important; object-fit: contain !important; }
+
+  /* 5. CTA — last */
+  .mn-hero__cta       { order: 4; margin: 24px auto 32px !important; display: block !important; text-align: center !important; width: fit-content !important; }
 
   /* Demo phone overlay — hide on mobile, only for desktop */
   .wa-bubble-overlay  { display: none; }
